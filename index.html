@@ -92,7 +92,7 @@ img {
                 <label for="videoSource">Video source: </label><select id="videoSource"></select>
             </div>
             <video id="video" width="300px" height="300px" playsinline autoplay></video>
-            <canvas id="canvas" "></canvas>
+            <canvas id="canvas" width="300px" height="300px"></canvas>
             
             <div></div>
         </div>
@@ -252,8 +252,7 @@ function takePhoto() {
         //获得Canvas对象
         let canvas = document.getElementById("canvas");
         let ctx = canvas.getContext('2d');
-        var img=
-        ctx.drawImage(document.getElementById("video"), 0, 0);
+        ctx.drawImage(document.getElementById("video"), 0, 0,300, 300/document.getElementById("video").videoWidth*document.getElementById("video").videoHeight);
     }
 
 </script>
