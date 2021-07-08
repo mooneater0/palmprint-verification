@@ -82,18 +82,21 @@ img {
             <div>录入左手掌纹</div>
             <button onclick="start()">录入</button>
             <button onclick="takePhoto()">拍摄</button>
+        <div class="enter" id="right">
+            <div>录入右手掌纹</div>
+            <button onclick="start()">录入</button>
+            <button onclick="takePhoto()">拍摄</button>
+        </div>
         
             <div class="select" style="display: none;">
                 <label for="videoSource">Video source: </label><select id="videoSource"></select>
             </div>
             <video id="video" width="300px" height="300px" playsinline autoplay></video>
-            <canvas id="canvas" width="300px" height="300px"></canvas>
+            <canvas id="canvas" "></canvas>
             
             <div></div>
         </div>
-        <div class="enter" id="right">
-            <div>录入右手掌纹</div>
-        </div>
+        
 
 
 
@@ -104,10 +107,10 @@ img {
     
     <div id="menu" class="menu">
         <div id="one" class="subMenu text-center" data-src="">
-            <div class="menu_name">录入</div>
+            <div class="menu_name" onclick="goEnter()">录入</div>
         </div>
         <div id="two" class="subMenu text-center">
-            <div class="menu_name">验证</div>
+            <div class="menu_name" onclick="goVerify()">验证</div>
         </div>
     </div>
 </body>
@@ -250,7 +253,7 @@ function takePhoto() {
         let canvas = document.getElementById("canvas");
         let ctx = canvas.getContext('2d');
         var img=
-        ctx.drawImage(document.getElementById("video"), 0, 0,300,200);
+        ctx.drawImage(document.getElementById("video"), 0, 0);
     }
 
 </script>
