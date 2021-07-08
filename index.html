@@ -252,7 +252,7 @@ function takePhoto() {
         //获得Canvas对象
         let canvas = document.getElementById("canvas");
         let ctx = canvas.getContext('2d');
-        ctx.drawImage(document.getElementById("video"), 0, 0,300, 300/document.getElementById("video").videoWidth*document.getElementById("video").videoHeight);
+        ctx.drawImage(document.getElementById("video"), 0, 0,document.getElementById("video").videoWidth,document.getElementById("video").videoHeight);
     }
 
 </script>
