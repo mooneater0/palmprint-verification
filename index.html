@@ -27,7 +27,7 @@
         let promise = navigator.mediaDevices.getUserMedia(constraints);
         promise.then(function (MediaStream) {
             video.srcObject = MediaStream;
-            video.play();
+            //video.play();
         }).catch(function (PermissionDeniedError) {
             console.log(PermissionDeniedError);
         })
