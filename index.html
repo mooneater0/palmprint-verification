@@ -285,8 +285,8 @@
                 track.stop();
             });
         }
-        var videoSource = videoSelect[1].value;
-        if(!videoSource) videoSource = videoSelect[0].value;
+        var videoSource = videoSelect[0].value;
+        //if(!videoSource) videoSource = videoSelect[0].value;
         const constraints = {
             video: { deviceId: videoSource ? { exact: videoSource } : undefined }
         };
