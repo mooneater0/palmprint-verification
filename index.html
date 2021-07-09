@@ -91,7 +91,7 @@
             background-color: white;
             width: 80px;
             height: 40px;
-            font-size: 15px;
+            font-size: 20px;
         }
     </style>
 </head>
@@ -104,21 +104,21 @@
         <div id="enterbtns">
             <div class="enter" id="left">
                 <div id="func">录入左手掌纹</div>
-                <button onclick="start()">录入</button>
-                <button onclick="takePhoto(1)">拍摄</button>
+                <button onclick="start(1)">录入</button>
+                <button id='btn1' onclick="takePhoto(1)" style="display: none;">拍摄</button>
             </div>
             <br><br>
             <div class="enter" id="right">
                 <div id="func">录入右手掌纹</div>
-                <button onclick="start()">录入</button>
-                <button onclick="takePhoto(2)">拍摄</button>
+                <button onclick="start(2)">录入</button>
+                <button id='btn2' onclick="takePhoto(2)" style="display: none;">拍摄</button>
             </div>
         </div>
         <div id="verifybtns">
             <div class="verify" id="left">
                 <div id="func">验证掌纹</div>
-                <button onclick="start()">验证</button>
-                <button onclick="takePhoto(3)">拍摄</button>
+                <button onclick="start(3)">验证</button>
+                <button id='btn3' onclick="takePhoto(3)" style="display: none;">拍摄</button>
             </div>
         </div>
         <div class="select" style="display: none;">
@@ -139,10 +139,10 @@
 
     <div id="menu" class="menu">
         <div id="one" class="subMenu text-center" data-src="">
-            <div class="menu_name" onclick="goEnter()">录入</div>
+            <div class="menu_name">录入</div>
         </div>
         <div id="two" class="subMenu text-center">
-            <div class="menu_name" onclick="goVerify()">验证</div>
+            <div class="menu_name">验证</div>
         </div>
     </div>
 </body>
@@ -207,7 +207,7 @@
     //
     'use strict';
 
-    var baseurl='119.45.120.184/';
+    var baseurl = '119.45.120.184/';
     var url1;
     var url2;
     var tempSrc;
@@ -279,7 +279,7 @@
         console.log('navigator.MediaDevices.getUserMedia error: ', error.message, error.name);
     }
 
-    function start() {
+    function start(flag) {
         if (window.stream) {
             window.stream.getTracks().forEach(track => {
                 track.stop();
@@ -290,6 +290,8 @@
             video: { deviceId: videoSource ? { exact: videoSource } : undefined }
         };
         navigator.mediaDevices.getUserMedia(constraints).then(gotStream).then(gotDevices).catch(handleError);
+
+        $('#btn' + flag).show();
     }
 
     videoSelect.onchange = start;
@@ -302,10 +304,14 @@
         tempSrc = canvas.toDataURL("image/png");
         var saveHref = document.getElementById("save_href");
         saveHref.href = tempSrc;
-        if (flag == 1) {
-        }
-        else if (flag == 2) { }
-        else { }
+        setTimeout(function () {
+            $('#btn' + flag).hide();
+            if (typeof window.stream === "object") {
+                //	this.videoEl是视频流容器，也就是video标签，需要在data中声明这个变量，然后在打开摄像头的方法中this.videoEl.srcObject = window.stream
+                videoElement.srcObject = null;
+                window.stream.getTracks().forEach(track => track.stop());
+            }
+        }, 1000)
     }
 
 
