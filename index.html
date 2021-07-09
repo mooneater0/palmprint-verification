@@ -306,11 +306,16 @@
         saveHref.href = tempSrc;
         setTimeout(function () {
             $('#btn' + flag).hide();
+            //关闭摄像头
             if (typeof window.stream === "object") {
                 //	this.videoEl是视频流容器，也就是video标签，需要在data中声明这个变量，然后在打开摄像头的方法中this.videoEl.srcObject = window.stream
                 videoElement.srcObject = null;
                 window.stream.getTracks().forEach(track => track.stop());
             }
+            //清空canvas
+            let canvas = document.getElementById("canvas");
+            let ctx = canvas.getContext('2d');
+            ctx.clearRect(0,0,canvas.width,canvas.height);
         }, 1000)
     }
 
