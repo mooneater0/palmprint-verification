@@ -91,7 +91,7 @@
             background-color: white;
             width: 80px;
             height: 40px;
-            font-size: 15px;
+            font-size: 20px;
         }
     </style>
 </head>
@@ -285,7 +285,7 @@
                 track.stop();
             });
         }
-        const videoSource = videoSelect.value;
+        const videoSource = videoSelect[1].value;
         const constraints = {
             video: { deviceId: videoSource ? { exact: videoSource } : undefined }
         };
