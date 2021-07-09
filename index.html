@@ -151,6 +151,7 @@
 
 </html>
 <script>
+    //底部导航栏
     $(document).ready(function () {
         //添加图片
         $("div .subMenu>img").each(function () {
@@ -216,6 +217,7 @@
     const videoSelect = document.querySelector('select#videoSource');
     const selectors = [videoSelect];
 
+    //试图选择摄像头，后发现在手机上只能调用前置，作罢
 
     function gotDevices(deviceInfos) {
         // Handles being called several times to update labels. Preserve values.
